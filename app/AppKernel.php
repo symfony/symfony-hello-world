@@ -18,7 +18,7 @@ class AppKernel extends Kernel
         $loader->load(__DIR__.'/config.yml');
     }
 
-    public function registerRootDir()
+    public function getRootDir()
     {
         return __DIR__;
     }
