@@ -1,6 +1,6 @@
 #!/bin/sh
 
-DIR=`php -r "echo realpath(dirname(\\$_SERVER['argv'][0]));"`
+DIR="`dirname $0`/../"
 VENDOR=$DIR/vendor
 
 # initialization

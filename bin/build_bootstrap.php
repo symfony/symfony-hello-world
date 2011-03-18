@@ -54,6 +54,7 @@ ClassCollectionLoader::load(array(
     'Symfony\\Bundle\\FrameworkBundle\\Routing\\LazyLoader',
     'Symfony\\Bundle\\FrameworkBundle\\HttpKernel',
     'Symfony\\Bundle\\FrameworkBundle\\FrameworkBundle',
+    'Symfony\\Bundle\\FrameworkBundle\\Templating\\GlobalVariables',
 ), dirname($file), basename($file, '.php.cache'), false, false, '.php.cache');
 
 file_put_contents($file, "<?php\n\nnamespace { require_once __DIR__.'/autoload.php'; }\n\n".substr(file_get_contents($file), 5));
