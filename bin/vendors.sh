@@ -1,6 +1,6 @@
 #!/bin/sh
 
-DIR="`dirname $0`/../"
+DIR=`php -r "echo dirname(dirname(realpath('$0')));"`
 VENDOR=$DIR/vendor
 
 # initialization
@@ -37,4 +37,4 @@ install_git()
 
 install_git symfony git://github.com/symfony/symfony.git
 
-../bin/build_bootstrap.php
+$DIR/bin/build_bootstrap.php
