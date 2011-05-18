@@ -1,3 +1,4 @@
 framework:
     router:        { resource: "%kernel.root_dir%/routing.yml" }
     templating:    { engines: ['php'] }
+    secret:        foobar
