@@ -38,7 +38,7 @@ cp -r $DIR/vendor/* .
 
 # Symfony
 cd symfony && rm -rf README.md phpunit.xml* tests *.sh autoload* vendor src/Symfony/Bridge/ \
-src/Symfony/Bundle/Doctrine* \
+src/Symfony/Bundle/Doctrine* src/Symfony/Bundle/SecurityBundle \
 src/Symfony/Bundle/SwiftMailerBundle src/Symfony/Bundle/TwigBundle src/Symfony/Bundle/MonologBundle \
 src/Symfony/Bundle/WebProfilerBundle \
 src/Symfony/Component/BrowserKit src/Symfony/Component/Console src/Symfony/Component/CssSelector \
