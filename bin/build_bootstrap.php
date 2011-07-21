@@ -1,8 +1,6 @@
 #!/usr/bin/env php
 <?php
 
-require_once __DIR__.'/../vendor/symfony/src/Symfony/Component/ClassLoader/UniversalClassLoader.php';
-
 /*
  * This file is part of the Symfony package.
  *
@@ -11,6 +9,8 @@ require_once __DIR__.'/../vendor/symfony/src/Symfony/Component/ClassLoader/Unive
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
+require_once __DIR__.'/../vendor/symfony/src/Symfony/Component/ClassLoader/UniversalClassLoader.php';
 
 use Symfony\Component\ClassLoader\UniversalClassLoader;
 use Symfony\Component\ClassLoader\ClassCollectionLoader;
@@ -26,7 +26,6 @@ ClassCollectionLoader::load(array(
     'Symfony\\Component\\Config\\ConfigCache',
     'Symfony\\Component\\Config\\FileLocatorInterface',
     'Symfony\\Component\\Config\\FileLocator',
-    'Symfony\\Component\\Config\\Loader\\LoaderInterface',
 
     'Symfony\\Component\\EventDispatcher\\EventDispatcherInterface',
     'Symfony\\Component\\EventDispatcher\\EventDispatcher',
@@ -46,8 +45,8 @@ ClassCollectionLoader::load(array(
     'Symfony\\Component\\HttpKernel\\Config\\FileLocator',
     'Symfony\\Component\\HttpKernel\\Controller\\ControllerResolverInterface',
     'Symfony\\Component\\HttpKernel\\Controller\\ControllerResolver',
-    'Symfony\\Component\\HttpKernel\\ResponseListener',
-    'Symfony\\Component\\HttpKernel\\Events',
+    'Symfony\\Component\\HttpKernel\\EventListener\\ResponseListener',
+    'Symfony\\Component\\HttpKernel\\KernelEvents',
     'Symfony\\Component\\HttpKernel\\Event\\GetResponseEvent',
     'Symfony\\Component\\HttpKernel\\Event\\KernelEvent',
     'Symfony\\Component\\HttpKernel\\Event\\FilterControllerEvent',
@@ -62,7 +61,6 @@ ClassCollectionLoader::load(array(
     'Symfony\\Component\\HttpFoundation\\ResponseHeaderBag',
     'Symfony\\Component\\HttpFoundation\\Response',
 
-    'Symfony\\Component\\ClassLoader\\ClassCollectionLoader',
     'Symfony\\Component\\ClassLoader\\UniversalClassLoader',
 
     'Symfony\\Component\\Routing\\Matcher\\UrlMatcherInterface',
@@ -87,13 +85,14 @@ ClassCollectionLoader::load(array(
 
     'Symfony\\Bundle\\FrameworkBundle\\HttpKernel',
     'Symfony\\Bundle\\FrameworkBundle\\FrameworkBundle',
-    'Symfony\\Bundle\\FrameworkBundle\\RequestListener',
     'Symfony\\Bundle\\FrameworkBundle\\ContainerAwareEventDispatcher',
-    'Symfony\\Bundle\\FrameworkBundle\\Routing\\LazyLoader',
     'Symfony\\Bundle\\FrameworkBundle\\Routing\\RedirectableUrlMatcher',
+    'Symfony\\Bundle\\FrameworkBundle\\Routing\\Router',
     'Symfony\\Bundle\\FrameworkBundle\\Controller\\ControllerResolver',
     'Symfony\\Bundle\\FrameworkBundle\\Controller\\ControllerNameParser',
     'Symfony\\Bundle\\FrameworkBundle\\Controller\\Controller',
+    'Symfony\\Bundle\\FrameworkBundle\\EventListener\\RouterListener',
+    'Symfony\\Bundle\\FrameworkBundle\\EventListener\\SessionListener',
     'Symfony\\Bundle\\FrameworkBundle\\Templating\\GlobalVariables',
     'Symfony\\Bundle\\FrameworkBundle\\Templating\\EngineInterface',
     'Symfony\\Bundle\\FrameworkBundle\\Templating\\PhpEngine',
@@ -101,6 +100,6 @@ ClassCollectionLoader::load(array(
     'Symfony\\Bundle\\FrameworkBundle\\Templating\\Loader\\FilesystemLoader',
     'Symfony\\Bundle\\FrameworkBundle\\Templating\\Loader\\TemplateLocator',
     'Symfony\\Bundle\\FrameworkBundle\\Templating\\TemplateReference',
-), dirname($file), basename($file, '.cache'), false, false, '.cache');
+), dirname($file), basename($file, '.php.cache'), false, false, '.php.cache');
 
 file_put_contents($file, "<?php\n\nnamespace { require_once __DIR__.'/autoload.php'; }\n\n".substr(file_get_contents($file), 5));

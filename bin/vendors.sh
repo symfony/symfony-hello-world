@@ -38,3 +38,4 @@ install_git()
 install_git symfony git://github.com/symfony/symfony.git
 
 $DIR/bin/build_bootstrap.php
+rm -rf $DIR/app/cache/*
