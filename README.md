@@ -7,11 +7,11 @@ of the framework. This is also the distribution used by the Symfony core team
 to ensure that new versions of the framework do not degrade performance.
 
 If you got it from Github, you must first install the dependencies by
-executing the following script:
+executing the following command:
 
-    ./bin/vendors.sh
+    git submodule update --init
 
-Then, benchmark Symfony by getting the `index.php/hello/Symfony` URL.
+Then, benchmark Symfony by getting the `/index.php/hello/Symfony` URL.
 
 You can also execute the `./bin/build.sh` script to create a small archive
 with all the needed files.
