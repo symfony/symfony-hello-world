@@ -7,4 +7,4 @@ doing "Hello World" benchmarks.
 It consists of one script (`optimize.sh`) that you need to run to get a fresh
 Symfony Standard Edition optimized for raw performance benchmarks.
 
-Benchmark Symfony by getting the `/index.php/hello/Symfony` URL.
+Benchmark Symfony by getting the `/app.php/hello/world` URL.
