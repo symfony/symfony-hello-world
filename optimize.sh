@@ -11,14 +11,7 @@ git clone http://github.com/symfony/symfony-standard.git .
 cat > app/autoload.php <<EOF
 <?php
 
-use Symfony\Component\ClassLoader\UniversalClassLoader;
-
-\$loader = new UniversalClassLoader();
-\$loader->registerNamespaces(array(
-    'Symfony' => __DIR__.'/../vendor/symfony/src',
-    'Acme'    => __DIR__.'/../src',
-));
-\$loader->register();
+return require __DIR__.'/../vendor/autoload.php';
 EOF
 
 # Remove unneeded vendor bundles
@@ -110,16 +103,49 @@ sed s/Request/ApacheRequest/ web/app.php > tmp
 mv tmp web/app.php
 
 # Remove unneeded vendors from dependencies
-cat > deps <<EOF
-[symfony]
-    git=http://github.com/symfony/symfony.git
-
-[SensioDistributionBundle]
-    git=http://github.com/sensio/SensioDistributionBundle.git
-    target=/bundles/Sensio/Bundle/DistributionBundle
+cat > composer.json <<EOF
+{
+    "name": "symfony/framework-hello-world-edition",
+    "description": "The \"Symfony Hello World Edition\" distribution (to be used for benchmarks)",
+    "autoload": {
+        "psr-0": { "": "src/" }
+    },
+    "require": {
+        "php": ">=5.3.3",
+        "symfony/symfony": "@stable",
+        "sensio/distribution-bundle": "@stable"
+    },
+    "replace": {
+        "doctrine/common": "*",
+        "twig/twig": "*"
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "Sensio\\\Bundle\\\DistributionBundle\\\Composer\\\ScriptHandler::buildBootstrap",
+            "Sensio\\\Bundle\\\DistributionBundle\\\Composer\\\ScriptHandler::clearCache",
+            "Sensio\\\Bundle\\\DistributionBundle\\\Composer\\\ScriptHandler::installAssets",
+            "Sensio\\\Bundle\\\DistributionBundle\\\Composer\\\ScriptHandler::installRequirementsFile"
+        ],
+        "post-update-cmd": [
+            "Sensio\\\Bundle\\\DistributionBundle\\\Composer\\\ScriptHandler::buildBootstrap",
+            "Sensio\\\Bundle\\\DistributionBundle\\\Composer\\\ScriptHandler::clearCache",
+            "Sensio\\\Bundle\\\DistributionBundle\\\Composer\\\ScriptHandler::installAssets",
+            "Sensio\\\Bundle\\\DistributionBundle\\\Composer\\\ScriptHandler::installRequirementsFile"
+        ]
+    },
+    "extra": {
+        "symfony-app-dir": "app",
+        "symfony-web-dir": "web"
+    }
+}
 EOF
 
+cat > composer.lock <<EOF
+EOF
+
+curl -s https://getcomposer.org/installer | php
+
 # Install the dependencies:
-./bin/vendors install
+php composer.phar install
 
 # Benchmark!
