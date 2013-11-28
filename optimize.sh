@@ -145,6 +145,9 @@ EOF
 
 curl -s https://getcomposer.org/installer | php
 
+# Set Symfony environment to production to disable use of Debug component
+export SYMFONY_ENV=prod
+
 # Install the dependencies:
 php composer.phar install
 
