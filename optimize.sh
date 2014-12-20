@@ -98,10 +98,6 @@ cat > src/Acme/HelloBundle/Resources/views/index.html.php <<EOF
 Hello world
 EOF
 
-# Optimize the Request
-sed s/Request/ApacheRequest/ web/app.php > tmp
-mv tmp web/app.php
-
 # Remove unneeded vendors from dependencies
 cat > composer.json <<EOF
 {
@@ -143,7 +139,7 @@ EOF
 cat > composer.lock <<EOF
 EOF
 
-curl -s https://getcomposer.org/installer | php
+curl -sS https://getcomposer.org/installer | php
 
 # Set Symfony environment to production to disable use of Debug component
 export SYMFONY_ENV=prod
