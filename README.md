@@ -1,3 +1,5 @@
+**DEPRECATED** Don't use this repository anymore. Use Flex instead, which allows to create a Hello World application in a much robust way. This repository will be deleted at some point.
+
 Symfony Hello World Edition
 ===========================
 
