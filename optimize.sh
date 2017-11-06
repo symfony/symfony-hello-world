@@ -1,5 +1,7 @@
 #!/bin/bash
 
+echo "WARNINIG: Don't use this script anymore, it's deprecated. Use Symfony Flex instead to create more robusts Hello World applications."
+
 # Script that optimizes a Symfony2 standard distribution for raw performance benchmarks
 
 # Get the Symfony2 standard edition
