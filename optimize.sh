@@ -138,8 +138,7 @@ cat > composer.json <<EOF
 }
 EOF
 
-cat > composer.lock <<EOF
-EOF
+rm composer.lock
 
 curl -sS https://getcomposer.org/installer | php
 
